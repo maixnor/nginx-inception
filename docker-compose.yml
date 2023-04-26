@@ -16,7 +16,6 @@ services:
     deploy:
       mode: replicated
       replicas: 3
-      endpoint_mode: vip
 
   inception-inception:
     image: nginx
@@ -25,4 +24,3 @@ services:
     deploy:
       mode: replicated
       replicas: 9
-      endpoint_mode: vip
