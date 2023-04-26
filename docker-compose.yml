@@ -2,5 +2,27 @@ services:
 
   proxy:
     image: nginx
+    volumes:
+      - ./proxy.conf:/tmp/default.conf
     ports:
-      - 80:80
+      - 6969:80
+
+  inception:
+    image: nginx
+    volumes:
+      - ./inception.conf:/tmp/default.conf
+    ports:
+      - 6970-6972:80
+    deploy:
+      mode: replicated
+      replicas: 3
+      endpoint_mode: vip
+
+  inception-inception:
+    image: nginx
+    ports:
+      - 6980-6988:80
+    deploy:
+      mode: replicated
+      replicas: 9
+      endpoint_mode: vip
